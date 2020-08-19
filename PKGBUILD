@@ -1,5 +1,5 @@
 # Maintainer: Cherry Linux <info.cherrylinux@gmail.com>
-pkgname=md2config-git
+pkgname=md2config
 pkgver=0.0.1
 pkgrel=1
 epoch=
@@ -12,7 +12,7 @@ depends=()
 makedepends=()
 checkdepends=()
 optdepends=()
-provides=()
+provides=("md2config")
 conflicts=()
 replaces=()
 backup=()
