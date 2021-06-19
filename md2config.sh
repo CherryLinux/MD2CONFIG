@@ -10,6 +10,7 @@ DIRECTORY="./"
 EXTENSION="md"
 LOOSE_ARGS=()
 
+#ARGS
 for arg in "$@"; do
     case $arg in
         -h|--help)
@@ -66,7 +67,7 @@ if [ $HELP -ne 0 ]; then
     echo "  <filename>             Pass file/s separated by spaces"
     echo ""
     echo -e "Valid files are those containing \e[1m[MD2CONFIG]: # (FILENAME: \"<filename>\")\e[0m"
-    echo "in the first line. Where <filename> is the name of the file to generate from"
+    echo "in the first line. Where <filename> is the name of the file to be generated"
     echo -e "blockcodes within it. Example: \e[1m[MD2CONFIG]: # (FILENAME: \"custom.lua\")\e[0m"
     exit 0
 fi
