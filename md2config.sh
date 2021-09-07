@@ -49,8 +49,8 @@ if [ $HELP -ne 0 ]; then
     echo "MD2CONFIG HELP"
     echo "Usage: ./md2config.sh [FLAG]..."
     echo "By default without any FLAGs it will look for .md files in the"
-    echo "current directory (case insensitive), generate configs files"
-    echo "from them and a .bak backup if an old file already exists."
+    echo "current directory (case insensitive), generate config files"
+    echo "from them and a .old file if another file already exists."
     echo "Any directoy, file or extension specified with a flag is case sensitive"
     echo ""
     echo "  -h, --help             Displays this help"
@@ -137,7 +137,7 @@ doFile(){
 
                 # IF FILE ALREADY EXISTS MAKE BACKUP
                 if test -f "$fileDirectory/$filename"; then
-                    cp $fileDirectory/$filename $fileDirectory/${filename}.bak
+                    cp $fileDirectory/$filename $fileDirectory/${filename}.old
                     #rm -f $fileDirectory/$filename
                 fi
                 
@@ -159,10 +159,18 @@ doFile(){
     fi    
 }
 
+echo "# RECURSIVE: $RECURSIVE"
+echo "# DIRECTORY: $DIRECTORY"
+echo "# FILE: $FILE"
+echo "# EXTENSION: $EXTENSION"
+echo "# VERBOSE: $VERBOSE"
+echo "# LESS: $LESS"
+echo "# LOOSE_ARGS: ${LOOSE_ARGS[*]}"
+
 # POSSIBLE FILENAMES CAT IN THE COMMAND OR MISSING ARGUMENTS
 if (( ${#LOOSE_ARGS[@]} )); then
-
-    if [ $RECURSIVE -eq 0 ] && [ $DIRECTORY = "./" ] && [ $EXTENSION = "md" ]; then    
+    echo "IN HERE"
+    if [ $RECURSIVE -eq 0 ] && [ $DIRECTORY = "./" ] && [ $EXTENSION = "md" ]; then
         for arg in ${LOOSE_ARGS[*]}; do
             doFile $arg
         done
@@ -173,19 +181,5 @@ if (( ${#LOOSE_ARGS[@]} )); then
 else
     exit 0
 fi
-
-
-
-
-
-#echo "# RECURSIVE: $RECURSIVE"
-#echo "# DIRECTORY: $DIRECTORY"
-#echo "# FILE: $FILE"
-#echo "# EXTENSION: $EXTENSION"
-#echo "# LOOSE_ARGS: ${LOOSE_ARGS[*]}"
-
-
-
-
 
 
