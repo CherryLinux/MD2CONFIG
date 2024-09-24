@@ -2,45 +2,45 @@
 
 #/usr/share/doc/{pkg} 	Application documentation 
 
-RECURSIVE=0
-HELP=0
-VERBOSE=0
-LESS=0
-DIRECTORY="./"
-EXTENSION="md"
-LOOSE_ARGS=()
+let RECURSIVE=0
+let HELP=0
+let VERBOSE=0
+let LESS=0
+let DIRECTORY="./"
+let EXTENSION="md"
+let LOOSE_ARGS=()
 
 #ARGS
 for arg in "$@"; do
     case $arg in
         -h|--help)
-        HELP=1
-        shift
-        ;;
+            HELP=1
+            shift
+            ;;
         -l|--less)
-        LESS=1
-        shift
-        ;;
+            LESS=1
+            shift
+            ;;
         -r|--recursive)
-        RECURSIVE=1
-        shift
-        ;;
+            RECURSIVE=1
+            shift
+            ;;
         -v|--verbose)
-        VERBOSE=1
-        shift
-        ;;
+            VERBOSE=1
+            shift
+            ;;
         -d=*|--directory=*)
-        DIRECTORY="${arg#*=}"
-        shift
-        ;;
+            DIRECTORY="${arg#*=}"
+            shift
+            ;;
         -e=*|--extension=*)
-        EXTENSION="${arg#*=}"
-        shift
-        ;;
+            EXTENSION="${arg#*=}"
+            shift
+            ;;
         *)
-        LOOSE_ARGS+=("$1")
-        shift
-        ;;
+            LOOSE_ARGS+=("$1")
+            shift
+            ;;
     esac
 done
 
@@ -68,7 +68,8 @@ if [ $HELP -ne 0 ]; then
     echo ""
     echo -e "Valid files are those containing \e[1m[MD2CONFIG]: # (FILENAME: \"<filename>\")\e[0m"
     echo "in the first line. Where <filename> is the name of the file to be generated"
-    echo -e "blockcodes within it. Example: \e[1m[MD2CONFIG]: # (FILENAME: \"custom.lua\")\e[0m"
+    echo "with the blockcodes within it."
+    echo -e "Example: \e[1m[MD2CONFIG]: # (FILENAME: \"custom.lua\")\e[0m"
     exit 0
 fi
 
